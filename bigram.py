@@ -5,9 +5,9 @@ from torch.nn import functional as F
 # hyperparameters
 batch_size = 32 # how many independent sequences will we process in parallel?
 block_size = 8 # what is the maximum context length for predictions?
-max_iters = 3000
-eval_interval = 300
-learning_rate = 1e-2
+max_iters = 5000
+eval_interval = 500
+learning_rate = 1e-3
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 eval_iters = 200
 n_embd = 32 #No. of dimensions of embeddings
@@ -76,6 +76,7 @@ class Head(nn.Module):
         # compute attention scores ("affinities")
         wei = q @ k.transpose(-2,-1) * C**-0.5 #(B, T, C) @ (B, C, T) --> (B, T, T)
         wei = wei.masked_fill(self.tril[:T, :T] == 0, float('-inf')) # (B, T, T)
+        wei = F.softmax(wei, dim=-1)
         #perfrom the weighted aggregation of the values
         v = self.value(x) #(B, T, C)
         out = wei @ v #(B, T, T) @ (B, T, C) --> (B, T, C)
