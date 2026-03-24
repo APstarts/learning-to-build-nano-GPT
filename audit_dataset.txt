@@ -1,0 +1,333 @@
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Procurement
+Process: Vendor Selection
+Condition: Vendor selected without competitive bidding.
+Criteria: As per procurement policy, minimum three quotations are required.
+Cause: Urgent requirement not documented or approved.
+Impact: Risk of favoritism and financial loss.
+
+### Response:
+Condition: Vendors were selected without obtaining the required competitive quotations.
+Criteria: Procurement policy mandates obtaining at least three quotations prior to vendor selection.
+Cause: Absence of documented justification and approval for bypassing the bidding process.
+Effect: Increased risk of non-transparent procurement and potential financial loss.
+Recommendation: Enforce mandatory documentation and approval for all exceptions to competitive bidding.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Inventory
+Process: Stock Reconciliation
+Condition: No periodic reconciliation between physical and system stock.
+Criteria: Monthly reconciliation is required as per SOP.
+Cause: Lack of assigned responsibility.
+Impact: Risk of inventory misstatement.
+
+### Response:
+Condition: Periodic reconciliation between physical inventory and system records was not performed.
+Criteria: SOP requires monthly reconciliation of inventory balances.
+Cause: Responsibility for reconciliation has not been formally assigned.
+Effect: Increased risk of inventory discrepancies and financial misstatement.
+Recommendation: Assign clear ownership and implement monthly reconciliation controls.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Finance
+Process: Journal Entries
+Condition: Manual journal entries posted without approval.
+Criteria: All manual entries require supervisory approval.
+Cause: Weak enforcement of approval controls.
+Impact: Risk of unauthorized adjustments.
+
+### Response:
+Condition: Manual journal entries were recorded without appropriate supervisory approval.
+Criteria: Financial control policy requires all manual entries to be reviewed and approved.
+Cause: Inadequate enforcement of approval controls.
+Effect: Increased risk of unauthorized or erroneous financial adjustments.
+Recommendation: Implement system-based approval workflows for all manual journal entries.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: ITGC
+Process: User Access Management
+Condition: Terminated employees still have system access.
+Criteria: Access should be revoked immediately upon termination.
+Cause: Delay in communication between HR and IT.
+Impact: Risk of unauthorized system access.
+
+### Response:
+Condition: System access for terminated employees was not revoked in a timely manner.
+Criteria: IT security policy mandates immediate revocation of access upon employee termination.
+Cause: Ineffective communication between HR and IT teams.
+Effect: Increased risk of unauthorized access to critical systems.
+Recommendation: Implement automated de-provisioning linked to HR exit processes.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Payroll
+Process: Salary Processing
+Condition: Overtime payments made without supporting approval.
+Criteria: Overtime must be pre-approved.
+Cause: Lack of validation checks.
+Impact: Risk of excess payroll costs.
+
+### Response:
+Condition: Overtime payments were processed without documented approvals.
+Criteria: Payroll policy requires prior approval for all overtime payments.
+Cause: Absence of validation controls in payroll processing.
+Effect: Increased risk of unauthorized or excessive payroll expenses.
+Recommendation: Introduce approval validation checks before processing overtime payments.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Procurement
+Process: Purchase Order Approval
+Condition: Purchase orders approved after issuance.
+Criteria: Approval must be obtained before issuing PO.
+Cause: System allows post-facto approval.
+Impact: Risk of unauthorized purchases.
+
+### Response:
+Condition: Purchase orders were approved after being issued to vendors.
+Criteria: Procurement policy requires approvals prior to issuance of purchase orders.
+Cause: System configuration permits post-facto approvals.
+Effect: Increased risk of unauthorized procurement transactions.
+Recommendation: Configure system to restrict PO issuance without prior approval.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Procurement
+Process: Vendor Master Creation
+Condition: Vendor created without due diligence.
+Criteria: KYC and verification required before onboarding.
+Cause: Lack of onboarding checklist.
+Impact: Risk of fraudulent vendors.
+
+### Response:
+Condition: Vendors were created in the system without completing required due diligence procedures.
+Criteria: Vendor onboarding policy mandates KYC and verification prior to creation.
+Cause: Absence of a standardized onboarding checklist.
+Effect: Increased risk of onboarding fraudulent or non-compliant vendors.
+Recommendation: Implement mandatory KYC checklist before vendor creation.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Inventory
+Process: Goods Receipt
+Condition: GRN created without physical verification.
+Criteria: Goods must be physically verified before GRN.
+Cause: Time pressure during unloading.
+Impact: Risk of incorrect stock recording.
+
+### Response:
+Condition: Goods Receipt Notes were generated without physical verification of materials.
+Criteria: Inventory policy requires physical verification prior to GRN creation.
+Cause: Operational time pressure during goods receipt.
+Effect: Increased risk of incorrect inventory recording.
+Recommendation: Enforce mandatory verification before GRN creation.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Inventory
+Process: Slow Moving Inventory
+Condition: No review of slow-moving items.
+Criteria: Periodic review required.
+Cause: No monitoring mechanism.
+Impact: Risk of obsolescence.
+
+### Response:
+Condition: Slow-moving inventory items were not periodically reviewed.
+Criteria: Inventory management policy requires regular review of non-moving stock.
+Cause: Absence of monitoring and reporting mechanisms.
+Effect: Increased risk of inventory obsolescence and carrying costs.
+Recommendation: Implement periodic review and provisioning for slow-moving items.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Finance
+Process: Bank Reconciliation
+Condition: Reconciliation not performed monthly.
+Criteria: Monthly reconciliation required.
+Cause: Staff shortage.
+Impact: Risk of undetected discrepancies.
+
+### Response:
+Condition: Bank reconciliations were not performed on a monthly basis.
+Criteria: Finance policy mandates monthly bank reconciliation.
+Cause: Inadequate staffing in finance function.
+Effect: Increased risk of undetected errors or fraudulent transactions.
+Recommendation: Ensure timely monthly reconciliation with adequate staffing.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Finance
+Process: Expense Booking
+Condition: Expenses recorded without invoices.
+Criteria: Supporting documents required.
+Cause: Weak documentation control.
+Impact: Risk of incorrect expenses.
+
+### Response:
+Condition: Expenses were recorded without supporting invoices.
+Criteria: Accounting policy requires valid supporting documentation for all expenses.
+Cause: Weak enforcement of documentation controls.
+Effect: Increased risk of inaccurate financial reporting.
+Recommendation: Enforce mandatory document verification before booking expenses.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Revenue
+Process: Sales Invoicing
+Condition: Invoices raised after delivery.
+Criteria: Invoice must be raised at dispatch.
+Cause: Delay in system entry.
+Impact: Revenue recognition issues.
+
+### Response:
+Condition: Sales invoices were raised after delivery of goods.
+Criteria: Revenue policy requires invoicing at the time of dispatch.
+Cause: Delays in recording transactions in the system.
+Effect: Risk of improper revenue recognition.
+Recommendation: Automate invoice generation at dispatch stage.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Payroll
+Process: Employee Master
+Condition: Duplicate employee records exist.
+Criteria: Unique employee ID required.
+Cause: Lack of validation checks.
+Impact: Risk of duplicate payments.
+
+### Response:
+Condition: Duplicate employee records were identified in the payroll system.
+Criteria: Payroll policy requires unique identification for each employee.
+Cause: Absence of validation checks during employee creation.
+Effect: Increased risk of duplicate salary payments.
+Recommendation: Implement system validation to prevent duplicate records.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: ITGC
+Process: Password Policy
+Condition: Weak password rules enforced.
+Criteria: Strong password policy required.
+Cause: Outdated system settings.
+Impact: Risk of unauthorized access.
+
+### Response:
+Condition: Weak password parameters were configured in the system.
+Criteria: IT security policy mandates strong password requirements.
+Cause: Outdated system configuration settings.
+Effect: Increased risk of unauthorized system access.
+Recommendation: Update password policy to enforce strong authentication controls.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Fixed Assets
+Process: Asset Tagging
+Condition: Assets not tagged.
+Criteria: All assets must be tagged.
+Cause: Lack of tracking process.
+Impact: Risk of asset misplacement.
+
+### Response:
+Condition: Fixed assets were not tagged for identification.
+Criteria: Asset management policy requires tagging of all assets.
+Cause: Absence of a formal tracking process.
+Effect: Increased risk of asset misplacement or loss.
+Recommendation: Implement asset tagging and periodic verification.
+### END
+
+
+
+### Instruction:
+Write an internal audit observation.
+
+### Input:
+Area: Compliance
+Process: Statutory Filing
+Condition: GST returns filed late.
+Criteria: Filing must be within due date.
+Cause: Poor tracking of deadlines.
+Impact: Penalties and interest.
+
+### Response:
+Condition: GST returns were filed after statutory due dates.
+Criteria: Regulatory requirements mandate timely filing of returns.
+Cause: Ineffective tracking of compliance deadlines.
+Effect: Exposure to penalties and interest charges.
+Recommendation: Implement compliance calendar with automated reminders.
+### END

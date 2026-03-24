@@ -205,6 +205,22 @@ for iter in range(max_iters):
     loss.backward() #backward propagation initialized.
     optimizer.step()
 
+
+#saving model parameters
+torch.save({
+    'model_state_dict': model.state_dict(),
+    'optimizer_state_dict': optimizer.state_dict(),
+    'stoi': stoi,
+    'itos': itos,
+    'config': {
+        'n_embd': n_embd,
+        'n_head': n_head,
+        'n_layer': n_layer,
+        'block_size': block_size,
+        'vocab_size': vocab_size
+    }
+}, 'audit_model.pt')
+
 # generate from the model
-context = torch.zeros((1, 1), dtype=torch.long, device=device)
-print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
+# context = torch.zeros((1, 1), dtype=torch.long, device=device)
+# print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
