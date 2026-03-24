@@ -7,8 +7,10 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 # load checkpoint
 checkpoint = torch.load('audit_model.pt', map_location=device)
 
+vocab_size = checkpoint['config']['vocab_size']
+
 # rebuild model
-model = BigramLanguageModel()
+model = BigramLanguageModel(vocab_size=vocab_size)
 model.load_state_dict(checkpoint['model_state_dict'])
 model.to(device)
 model.eval()
@@ -40,7 +42,7 @@ Impact: Risk of misstatement.
 context = torch.tensor(encode(prompt), dtype=torch.long, device=device).unsqueeze(0)
 
 # generate
-output = model.generate(context, max_new_tokens=150)
+output = model.generate(context, max_new_tokens=300)
 
 # decode
 text = decode(output[0].tolist())

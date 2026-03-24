@@ -136,7 +136,7 @@ class Block(nn.Module):
 # super simple bigram model
 class BigramLanguageModel(nn.Module):
 
-    def __init__(self):
+    def __init__(self, vocab_size):
         super().__init__()
         # each token directly reads off the logits for the next token from a lookup table
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd) #each vocabulary item will have a 32 dimensional embedding vector.
@@ -183,43 +183,44 @@ class BigramLanguageModel(nn.Module):
             idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
         return idx
 
-model = BigramLanguageModel()
-m = model.to(device)
+if __name__ == "__main__":
+    model = BigramLanguageModel(vocab_size)
+    m = model.to(device)
 
-# create a PyTorch optimizer
-optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+    # create a PyTorch optimizer
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
 
-for iter in range(max_iters):
+    for iter in range(max_iters):
 
-    # every once in a while evaluate the loss on train and val sets
-    if iter % eval_interval == 0:
-        losses = estimate_loss()
-        print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+        # every once in a while evaluate the loss on train and val sets
+        if iter % eval_interval == 0:
+            losses = estimate_loss()
+            print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
 
-    # sample a batch of data
-    xb, yb = get_batch('train')
+        # sample a batch of data
+        xb, yb = get_batch('train')
 
-    # evaluate the loss
-    logits, loss = model(xb, yb)
-    optimizer.zero_grad(set_to_none=True)
-    loss.backward() #backward propagation initialized.
-    optimizer.step()
+        # evaluate the loss
+        logits, loss = model(xb, yb)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward() #backward propagation initialized.
+        optimizer.step()
 
 
-#saving model parameters
-torch.save({
-    'model_state_dict': model.state_dict(),
-    'optimizer_state_dict': optimizer.state_dict(),
-    'stoi': stoi,
-    'itos': itos,
-    'config': {
-        'n_embd': n_embd,
-        'n_head': n_head,
-        'n_layer': n_layer,
-        'block_size': block_size,
-        'vocab_size': vocab_size
-    }
-}, 'audit_model.pt')
+    #saving model parameters
+    torch.save({
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimizer.state_dict(),
+        'stoi': stoi,
+        'itos': itos,
+        'config': {
+            'n_embd': n_embd,
+            'n_head': n_head,
+            'n_layer': n_layer,
+            'block_size': block_size,
+            'vocab_size': vocab_size
+        }
+    }, 'audit_model.pt')
 
 # generate from the model
 # context = torch.zeros((1, 1), dtype=torch.long, device=device)
