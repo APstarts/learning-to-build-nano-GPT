@@ -85,7 +85,7 @@ class Head(nn.Module):
         #perfrom the weighted aggregation of the values
         v = self.value(x) #(B, T, C)
         out = wei @ v #(B, T, T) @ (B, T, C) --> (B, T, C)
-        return out
+        return out #(B, T, head_size)
 
 class MultiHeadAttention(nn.Module):
     """multiple heads of self-attention in parallel"""
@@ -93,6 +93,12 @@ class MultiHeadAttention(nn.Module):
     def __init__(self, num_heads, head_size):
         super().__init__()
         self.heads = nn.ModuleList([Head(head_size) for _ in range(num_heads)])
+        # Why projection is required?
+        # Each head outputs (B, T, head_size) and after concatenation it becomes (B, T, num_heads * head_size) ---> num_heads * head_size = n_embd --> (B, T, n_embd)
+        # After concatenation the vector looks like this: [head1_features | head2_features | head3_features | ...]
+        # What self.proj does? This is a linear transformation. It mixes information across heads. It allows them to learn how much to trust each head and how to combine features from different heads.
+        # This makes interactions between heads possible and heads can influence each other.
+
         self.proj = nn.Linear(n_embd, n_embd)
         self.dropout = nn.Dropout(dropout)
 
