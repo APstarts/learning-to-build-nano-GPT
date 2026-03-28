@@ -108,7 +108,7 @@ class MultiHeadAttention(nn.Module):
         return out
 
 class FeedForward(nn.Module):
-    """a simple linear layer followed by a non-linearity. This is done per token wise."""
+    """a simple linear layer followed by a non-linearity. This is done per token wise. This allows each token to think. It's more like tokens start refining themselves here. A refined context-aware representation of the token."""
 
     def __init__(self, n_embd):
         super().__init__()
@@ -120,7 +120,7 @@ class FeedForward(nn.Module):
         )
     
     def forward(self, x):
-        return self.net(x)
+        return self.net(x) # (B, T, n_embd)
 
 class Block(nn.Module):
     """Transformer block: communication followed by computation"""
@@ -134,7 +134,7 @@ class Block(nn.Module):
         self.ln1 = nn.LayerNorm(n_embd)
         self.ln2 = nn.LayerNorm(n_embd)
 
-    def forward(self, x):
+    def forward(self, x): #original representations + learned updates
         x = x + self.sa(self.ln1(x))
         x = x + self.ffwd(self.ln2(x))
         return x
