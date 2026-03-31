@@ -1,4 +1,4 @@
-import torch
+    import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
@@ -118,7 +118,7 @@ class FeedForward(nn.Module):
             nn.Linear(4 * n_embd, n_embd),
             nn.Dropout(dropout)
         )
-    
+
     def forward(self, x):
         return self.net(x) # (B, T, n_embd)
 
