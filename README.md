@@ -11,3 +11,6 @@ Incorporated the following optimizations after completing the said lecture:
 - Autocast
 - torch.compile
 - steaming dataloader
+
+### Extremely small overview of the transformer architecture
+Block --> Heads (attention heads) --> FeedForward Network --> Linear matrix multiplication --> logits --> loss calculation
