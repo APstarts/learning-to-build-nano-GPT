@@ -55,21 +55,6 @@ train_data = data[:n]
 val_data = data[n:]
 
 
-def get_batch(split):  # Vectorized operations for efficiency
-    data = train_data if split == "train" else val_data
-
-    ix = torch.randint(0, len(data) - block_size - 1, (batch_size,))
-
-    # create offsets [0,1,2,...,block_size-1]
-    offsets = torch.arange(block_size)
-
-    # broadcasting: (B,1) + (T,) → (B,T)
-    x = data[ix.unsqueeze(1) + offsets]
-    y = data[ix.unsqueeze(1) + offsets + 1]
-
-    return x.to(device), y.to(device)
-
-
 class DataLoaderLite:
     def __init__(self, B, T, data):
         self.B = B
@@ -198,22 +183,24 @@ if use_compile:
     model = torch.compile(model)
 optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
 train_loader = DataLoaderLite(B, T, train_data)
+val_loader = DataLoaderLite(B, T, val_data)
 
 
 @torch.no_grad()
 def estimate_loss():
     model.eval()
     out = {}
-    for split in ["train", "val"]:
+    loaders = {"train": train_loader, "val": val_loader}
+    for split, loader in loaders.item():
         losses = torch.zeros(eval_iters)
+        loader.reset()
+
         for k in range(eval_iters):
-            X, Y = get_batch(split)
+            X, Y = loader.next_batch()
             with torch.autocast(device_type=device, dtype=torch.bfloat16):
                 _, loss = model(X, Y)
-            losses[k] = loss.item()
-        out[split] = losses.mean()
-    model.train()
-    return out
+                losses[k] = loss.item()
+                out[split] = losses.mean()
 
 
 for iter in range(max_iters):
