@@ -191,7 +191,7 @@ def estimate_loss():
     model.eval()
     out = {}
     loaders = {"train": train_loader, "val": val_loader}
-    for split, loader in loaders.item():
+    for split, loader in loaders.items():
         losses = torch.zeros(eval_iters)
         loader.reset()
 
@@ -201,6 +201,7 @@ def estimate_loss():
                 _, loss = model(X, Y)
                 losses[k] = loss.item()
                 out[split] = losses.mean()
+    return out
 
 
 for iter in range(max_iters):
