@@ -18,9 +18,9 @@ learning_rate = 3e-4
 device = "cuda" if torch.cuda.is_available() else "cpu"
 eval_iters = 200
 
-n_embd = 384
-n_head = 6
-n_layer = 6
+n_embd = 384 #this is the number of token embedding dimensions.
+n_head = 6 # This is the number of attention heads in each block
+n_layer = 6 #No. of blocks
 dropout = 0.2
 
 total_batch_size = 524288  # total tokens per step (target) // this could be between the 0.1% to 1% of the total tokens size of the dataset.
@@ -94,10 +94,13 @@ class MultiHeadAttention(nn.Module):
         q, k, v = qkv.split(C, dim=2)
 
         # (B, nh, T, hs)
-        q = q.view(B, T, self.n_head, self.head_size).transpose(1, 2)
-        k = k.view(B, T, self.n_head, self.head_size).transpose(1, 2)
-        v = v.view(B, T, self.n_head, self.head_size).transpose(1, 2)
+        q = q.view(B, T, self.n_head, self.head_size).transpose(1, 2) #Query is something that the token is looking for
+        k = k.view(B, T, self.n_head, self.head_size).transpose(1, 2) # The key is the one that tells the rest of the sequence: This is what I represent, and this is why you might went to pay to me.
+        v = v.view(B, T, self.n_head, self.head_size).transpose(1, 2) # Value is something that the token will give when it finds a good match for itself.
 
+        # the dot product of query and key gives out the compatiblity score.
+        # TTo prevent the gradients from exploding, we scale by the square root of the dimension dk. The dk means embedding size / no. of attention heads
+        # Then softmax is applied. 
         # flash attention
         out = F.scaled_dot_product_attention(
             q, k, v, is_causal=True, dropout_p=dropout if self.training else 0.0
@@ -105,10 +108,10 @@ class MultiHeadAttention(nn.Module):
         # back to (B, T, C)
         out = out.transpose(1, 2).contiguous().view(B, T, C)
 
-        return self.proj(out)
+        return self.proj(out) #the output is context aware tokens.
 
 
-class FeedForward(nn.Module):
+class FeedForward(nn.Module): #here each token starts thinking independently based on the output of the self-attention block to decide what to do with that information.
     def __init__(self):
         super().__init__()
         self.net = nn.Sequential(
@@ -158,7 +161,7 @@ class GPT(nn.Module):
         x = self.blocks(x)
         x = self.ln_f(x)
 
-        logits = self.lm_head(x)
+        logits = self.lm_head(x) #here we get logits. These are the raw scores that the model has calculated.
 
         loss = None
         if targets is not None:
