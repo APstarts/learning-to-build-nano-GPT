@@ -23,7 +23,7 @@ n_head = 6
 n_layer = 6
 dropout = 0.2
 
-total_batch_size = 524288  # total tokens per step (target)
+total_batch_size = 524288  # total tokens per step (target) // this could be between the 0.1% to 1% of the total tokens size of the dataset.
 B = batch_size  # your micro-batch size
 T = block_size
 
