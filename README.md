@@ -84,7 +84,7 @@ Shape:
 
 (Num_Tokens,)
 
-##4. Train / Validation Split
+## 4. Train / Validation Split
 ```
 n = int(0.9 * len(data))
 train_data = data[:n]
